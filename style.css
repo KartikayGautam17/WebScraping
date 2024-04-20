@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --w-cyan: #66fcf1;
+  --w-shade-cyan: #45a29e;
+  --w-graywhite: #c5c6c7;
+  --w-clayblack: #1f2833;
+  --w-black: #0b0c10;
+}
