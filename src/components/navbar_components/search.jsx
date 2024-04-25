@@ -1,4 +1,4 @@
-function Search({ user_query, on_Click, on_Change }) {
+function Search({ on_Click, on_Change }) {
   const search_bar = document.getElementById("search_bar");
   return (
     <div id="search_bar" className="w-[70%] flex items-center h-full relative">

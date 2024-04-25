@@ -11,7 +11,7 @@ function Navbar({ userQuery, on_Click, on_Change }) {
 
       <div className="inline-flex w-[70%] h-full ml-[5%] p-2.5 justify-between items-center">
         <Search
-          user_query={userQuery}
+          // user_query={userQuery}
           on_Click={on_Click}
           on_Change={on_Change}
         />

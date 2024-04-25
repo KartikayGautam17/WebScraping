@@ -9,7 +9,7 @@ const price_class = "span.a-price-whole";
 const href_class =
   ".a-link-normal.s-underline-text.s-underline-link-text.s-link-style.a-text-normal";
 
-async function AmazonScrape({ page_url = page_url_default }) {
+const AmazonScrape = async (page_url) => {
   const browser = await puppeteer.launch({
     headless: true,
     defaultViewport: null,
@@ -32,6 +32,6 @@ async function AmazonScrape({ page_url = page_url_default }) {
   });
   await browser.close();
   return results_list;
-}
+};
 
 export default AmazonScrape;

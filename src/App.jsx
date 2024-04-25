@@ -3,8 +3,8 @@ import ResultContainer from "./components/result_container";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [query, setQuery] = useState(null);
-  const [queryBtn, setQueryBtn] = useState(null);
+  const [query, setQuery] = useState(() => null);
+  const [queryBtn, setQueryBtn] = useState(() => null);
   const UpdateQuery = () => {
     setQueryBtn(query);
     console.log(query);
@@ -18,7 +18,7 @@ function App() {
       <Navbar
         on_Click={UpdateQuery}
         on_Change={UpdateInputChange}
-        userQuery={query}
+        // userQuery={query}
       />
       <ResultContainer userQuery={queryBtn} />
     </div>
