@@ -1,7 +1,7 @@
 import Search from "./navbar_components/search";
 import Filter from "./navbar_components/filters";
 
-function Navbar() {
+function Navbar({ userQuery, on_Click, on_Change }) {
   return (
     <div className="w-full bg-[--w-black] h-[15vh]">
       <img
@@ -10,7 +10,11 @@ function Navbar() {
       ></img>
 
       <div className="inline-flex w-[70%] h-full ml-[5%] p-2.5 justify-between items-center">
-        <Search />
+        <Search
+          user_query={userQuery}
+          on_Click={on_Click}
+          on_Change={on_Change}
+        />
         <Filter />
       </div>
     </div>
