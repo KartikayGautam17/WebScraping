@@ -3,7 +3,7 @@ import WebScraper from "./Webscraper_main";
 
 function App() {
   return (
-    <div className="bg-[var(--w-clayblack)]">
+    <div className="">
       <WebScraper />
     </div>
   );

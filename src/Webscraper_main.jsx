@@ -14,12 +14,8 @@ function WebScraper() {
   };
   // useEffect(() => {}, [query]);
   return (
-    <div className="w-full h-full bg-[var(--w-clayblack)] text-[white]">
-      <Navbar
-        on_Click={UpdateQuery}
-        on_Change={UpdateInputChange}
-        // userQuery={query}
-      />
+    <div className="min-h-[100vh] bg-[--w-clayblack]">
+      <Navbar on_Click={UpdateQuery} on_Change={UpdateInputChange} />
       <ResultContainer userQuery={queryBtn} />
     </div>
   );
