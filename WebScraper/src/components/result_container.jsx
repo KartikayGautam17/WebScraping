@@ -17,14 +17,17 @@ function ResultContainer({ userQuery }) {
       for (let key = 0; key < 10; key += 1) {
         if (Object.hasOwnProperty.call(AmazonResults, key)) {
           const val = AmazonResults[key];
-          console.log(val);
+          let fine_title = val.title;
+          if (val.title.length > 10) {
+            fine_title = val.title.slice(0, val.title.length - 3) + "...";
+          }
           WidgetObject.push(
             <Tile
               key={val.id}
               img={val.img}
               href={val.href}
               price={val.price}
-              title={val.title}
+              title={fine_title}
             />
           );
         }
@@ -35,7 +38,7 @@ function ResultContainer({ userQuery }) {
 
   return (
     <div className="bg-[--w--clayblack] flex items-center justify-center relative">
-      <div className="bg-[--w-shadecyan] p-10 gap-5 mt-5 mb-10 grid grid-rows-2 grid-cols-4 w-[90%] border-2 min-h-[85vh] [row-gap:20px]">
+      <div className="bg-[--w-shadecyan] p-10 gap-5 mt-5 mb-10 grid grid-rows-3 grid-cols-5 w-[90%] border-2 min-h-[85vh] [row-gap:20px]">
         {Widgets}
       </div>
     </div>

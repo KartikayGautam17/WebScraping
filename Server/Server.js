@@ -1,7 +1,7 @@
 import express, { json } from "express";
 import cors from "cors";
 
-import FetchAmazonResults from "./Scrapers/amazon/amazon_scraper.js";
+import FetchAmazonResults from "./Scrapers/amazon_scraper.js";
 
 const app = express();
 app.use(cors());
