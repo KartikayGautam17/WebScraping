@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import KickstartAmazonScraper from "../scrapers/Amazon_Kickstart";
 import A from "./result_tiles/content_array";
 
-function ResultContainer({ userQuery }) {
+function ResultContainer({ userQuery, btnPress }) {
   if (userQuery === null || userQuery === "") {
     return <DefaultResults />;
   }
@@ -12,6 +12,7 @@ function ResultContainer({ userQuery }) {
 
   let WidgetObject = [];
   useEffect(() => {
+    setWidgets("..Loading..");
     KickstartAmazonScraper(userQuery).then((AmazonResults) => {
       //const AmazonResults = A;
       for (let key = 0; key < 10; key += 1) {
@@ -34,7 +35,7 @@ function ResultContainer({ userQuery }) {
       }
       setWidgets(() => WidgetObject);
     });
-  }, [userQuery]);
+  }, [btnPress]);
 
   return (
     <div className="bg-[--w--clayblack] flex items-center justify-center relative">

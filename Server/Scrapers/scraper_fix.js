@@ -3,11 +3,11 @@ import puppeteer from "puppeteer";
 import * as cheerio from "cheerio";
 import fs from "fs";
 const page_url_default = "https://www.amazon.in/s?k=plushie";
-const title_class = "span.a-size-medium.a-color-base.a-text-normal";
+const title_class = "[target$='_blank']";
 const img_class = "img.s-image";
 const price_class = "span.a-price-whole";
 const href_class = "span[data-component-type='s-product-image']";
-const widget_id = "cel_widget_id";
+const widget_id = (i) => "cel_widget_id$=" + `MAIN-SEARCH_RESULTS-${i}`;
 const FetchAmazonResults = async (page_url = page_url_default) => {
   const browser = await puppeteer.launch({
     headless: true,
@@ -19,21 +19,20 @@ const FetchAmazonResults = async (page_url = page_url_default) => {
   const $ = cheerio.load(data);
   const results_list = [];
   fs.writeFile("res_array.html", data, (err) => 0);
-  const widgets = $("div[" + widget_id + "]");
-  widgets.each((i, widget) => {
-    const title =
-      $(widget).find("h2 a span").text() || "Title could not be fetched";
+  for (let i = 1; i < 10; i++) {
+    const widget = $("div[" + widget_id(i) + "]");
+    const text = $(widget).find(title_class).text();
     const img = $(widget).find(img_class).attr("src");
     const price = $(widget).find(price_class).text();
     const href =
       "https://amazon.in/" + $(widget).find(href_class).find("a").attr("href");
-    if (price && img && href)
-      results_list.push({ id: i, title, price, img, href });
-  });
-
+    if (price && text && img && href)
+      results_list.push({ id: i, text, price, img, href });
+  }
   //fs.writeFile("widget_text.json", JSON.stringify(results_list), (err) => 0);
-  //console.log("File Written");
+  console.log("File Written");
   await browser.close();
+  console.log(typeof results_list);
   return results_list;
 };
 
