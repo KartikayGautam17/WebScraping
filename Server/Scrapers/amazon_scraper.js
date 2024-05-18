@@ -21,13 +21,12 @@ const FetchAmazonResults = async (page_url = page_url_default) => {
   fs.writeFile("res_array.html", data, (err) => 0);
   const widgets = $("div[" + widget_id + "]");
   widgets.each((i, widget) => {
-    const title =
-      $(widget).find("h2 a span").text() || "Title could not be fetched";
+    const title = $(widget).find("h2 a span").text();
     const img = $(widget).find(img_class).attr("src");
     const price = $(widget).find(price_class).text();
     const href =
       "https://amazon.in/" + $(widget).find(href_class).find("a").attr("href");
-    if (price && img && href)
+    if (price && img && href && title)
       results_list.push({ id: i, title, price, img, href });
   });
 
