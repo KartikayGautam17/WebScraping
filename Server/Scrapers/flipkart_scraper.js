@@ -7,7 +7,7 @@ const img_class = "img.s-image";
 const price_class = "span.a-price-whole";
 const href_class = "span[data-component-type='s-product-image']";
 const widget_id = "cel_widget_id";
-const FetchAmazonResults = async (page_url = page_url_default) => {
+const FetchFlipkartResults = async (page_url = page_url_default) => {
   const browser = await puppeteer.launch({
     headless: true,
     defaultViewport: null,
@@ -17,7 +17,7 @@ const FetchAmazonResults = async (page_url = page_url_default) => {
   const data = await page.content();
   const $ = cheerio.load(data);
   const results_list = [];
-  fs.writeFile("res_array.html", data, (err) => 0);
+  fs.writeFile("flipkart_res_array.html", data, (err) => 0);
   const widgets = $("div[" + widget_id + "]");
   widgets.each((i, widget) => {
     const title = $(widget).find("h2 a span").text();
@@ -35,4 +35,4 @@ const FetchAmazonResults = async (page_url = page_url_default) => {
   return results_list;
 };
 
-export default FetchAmazonResults;
+export default FetchFlipkartResults;
