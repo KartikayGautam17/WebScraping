@@ -19,8 +19,9 @@ function ResultContainer({ userQuery, btnPress }) {
         if (Object.hasOwnProperty.call(AmazonResults, key)) {
           const val = AmazonResults[key];
           let fine_title = val.title;
-          if (val.title.length > 10) {
-            fine_title = val.title.slice(0, val.title.length - 3) + "...";
+          let n = 100;
+          if (val.title.length > n) {
+            fine_title = val.title.slice(0, n - 3) + "...";
           }
           WidgetObject.push(
             <Tile
