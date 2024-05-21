@@ -1,12 +1,12 @@
 import puppeteer from "puppeteer";
 import * as cheerio from "cheerio";
 import fs from "fs";
-const page_url_default = "https://www.flipkart.com/search?q=plushie";
-const title_class = ".KzD1HZ";
-const img_class = ".DByuf4";
-const price_class = ".Nx9bqj _4b5DiR";
-const href_class = ".CGtC98";
-const widget_id = ".tUxRFH";
+const page_url_default = "https://www.flipkart.com/search?q=mobile+phones";
+const title_class = "[loading$='eager']";
+const img_class = "[loading$='eager']";
+const price_class = ".Nx9bqj";
+const href_class = "[rel$='noopener noreferrer']";
+const widget_id = "div._75nlfW";
 const FetchFlipkartResults = async (page_url = page_url_default) => {
   const browser = await puppeteer.launch({
     headless: true,
@@ -17,21 +17,20 @@ const FetchFlipkartResults = async (page_url = page_url_default) => {
   const data = await page.content();
   const $ = cheerio.load(data);
   const results_list = [];
-  fs.writeFile("flipkart_res_array.html", data, (err) => 0);
-  const widgets = $("div[" + widget_id + "]");
+  const widgets = $(widget_id);
   widgets.each((i, widget) => {
-    // const title = $(widget).find("h2 a span").text();
-    // const img = $(widget).find(img_class).attr("src");
-    // const price = $(widget).find(price_class).text();
-    // const href =
-    //   "https://www.flipkart.com/" +
-    //   $(widget).find(href_class).find("a").attr("href");
-    // if (price && img && href && title)
-    //   results_list.push({ id: i, title, price, img, href });
+    const main_class = $(widget).find(href_class);
+    const title = "Flipkart " + $(main_class).find(title_class).attr("alt");
+    const img = $(main_class).find(img_class).attr("src");
+    const price = $(widget)
+      .find(price_class)
+      .text()
+      .match(/([^₹]*)/)[0];
+    const href = "https://www.flipkart.com" + main_class[0].attribs.href;
+    if (price && img && href && title)
+      results_list.push({ id: i, title, price, img, href });
   });
-
-  //fs.writeFile("widget_text.json", JSON.stringify(results_list), (err) => 0);
-  //console.log("File Written");
+  console.log("Process Finished");
   await browser.close();
   return results_list;
 };
