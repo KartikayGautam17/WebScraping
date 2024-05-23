@@ -2,7 +2,7 @@ import express, { json } from "express";
 import cors from "cors";
 
 import FetchAmazonResults from "./Scrapers/amazon_scraper.js";
-
+import FetchFlipkartResults from "./Scrapers/flipkart_scraper.js";
 const app = express();
 app.use(cors());
 app.use(json());
@@ -26,7 +26,7 @@ app.post("/postdata", (req, res) => {
 
 app.post("/amazon_data", (request, response) => {
   const page_url = request.body.url;
-  console.log(page_url);
+  console.log("Amazon:-", page_url);
   try {
     const AmazonResults = FetchAmazonResults(page_url).then(
       (results_object) => {
@@ -35,6 +35,20 @@ app.post("/amazon_data", (request, response) => {
     ); //object
   } catch {
     console.log("some error in the backend");
+  }
+});
+
+app.post("/flipkart_data", (request, response) => {
+  const page_url = request.body.url;
+  console.log("Flipkart:-", page_url);
+  try {
+    const FlipkartResults = FetchFlipkartResults(page_url).then(
+      (results_object) => {
+        response.json(results_object);
+      }
+    );
+  } catch {
+    console.log("some error in flipkart");
   }
 });
 
