@@ -22,15 +22,25 @@ const FetchFlipkartResults = async (page_url = page_url_default) => {
     const main_class = $(widget).find(href_class);
     const title = "Flipkart " + $(main_class).find(title_class).attr("alt");
     const img = $(main_class).find(img_class).attr("src");
-    const price = $(widget)
-      .find(price_class)
-      .text()
-      .match(/([^₹]*)/)[0];
+    const price =
+      $(widget)
+        .find(price_class)
+        .text()
+        .match(/₹([^₹]*)/)[1] + "F";
     const href = "https://www.flipkart.com" + main_class[0].attribs.href;
-    if (price && img && href && title)
-      results_list.push({ id: i, title, price, img, href });
+
+    // if (price && img && href && title)
+    results_list.push({ source: "F", id: i, title, price, img, href });
   });
+  // fs.writeFile("flipkart_data.html", data, (err) => 0);
+  // fs.writeFile(
+  //   "flipkart_widget_text.json",
+  //   JSON.stringify(results_list),
+  //   (err) => 0
+  // );
+  console.log(results_list.length);
   console.log("Process Finished");
+
   await browser.close();
   return results_list;
 };

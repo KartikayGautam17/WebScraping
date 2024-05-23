@@ -28,6 +28,7 @@ function ResultContainer({ userQuery, btnPress }) {
           let fine_title = FineTitle(val.title);
           WidgetObject.push(
             <Tile
+              source={val.source}
               title={fine_title}
               price={val.price}
               img={val.img}

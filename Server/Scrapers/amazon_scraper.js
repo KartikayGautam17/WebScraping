@@ -26,9 +26,9 @@ const FetchAmazonResults = async (page_url = page_url_default) => {
     const href =
       "https://amazon.in/" + $(widget).find(href_class).find("a").attr("href");
     if (price && img && href && title)
-      results_list.push({ id: i, title, price, img, href });
+      results_list.push({ source: "A", id: i, title, price, img, href });
   });
-
+  console.log(results_list.length);
   //fs.writeFile("widget_text.json", JSON.stringify(results_list), (err) => 0);
   //console.log("File Written");
   await browser.close();
