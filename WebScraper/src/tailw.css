@@ -635,16 +635,8 @@ video {
   height: 100%;
 }
 
-.h-\[50\%\] {
-  height: 50%;
-}
-
 .max-h-\[260px\] {
   max-height: 260px;
-}
-
-.max-h-full {
-  max-height: 100%;
 }
 
 .min-h-\[100vh\] {
@@ -673,10 +665,6 @@ video {
 
 .w-\[90\%\] {
   width: 90%;
-}
-
-.w-auto {
-  width: auto;
 }
 
 .w-fit {

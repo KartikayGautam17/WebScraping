@@ -1,9 +1,4 @@
-function Search({ on_Click, on_Change }) {
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      console.log("enter press here! ");
-    }
-  };
+function Search({ on_Click, on_Change, on_KeyDown }) {
   return (
     <div id="search_bar" className="w-[70%] flex items-center h-full relative">
       <input
@@ -12,11 +7,15 @@ function Search({ on_Click, on_Change }) {
         placeholder={"Search..."}
         spellCheck="false"
         onChange={on_Change}
+        onKeyDown={(e) => {
+          on_KeyDown(e);
+        }}
       />
 
       <button
-        onClick={on_Click}
-        onKeyDown={handleKeyPress}
+        onClick={() => {
+          on_Click();
+        }}
         className="select-none absolute cursor-pointer right-0 rounded-full h-1/2 w-[10%] flex items-center justify-center bg-[--w-cyan] hover:w-1/6 duration-500"
       >
         <img src="./src/graphics/search.svg" />

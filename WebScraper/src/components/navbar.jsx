@@ -1,7 +1,7 @@
 import Search from "./navbar_components/search";
 import Filter from "./navbar_components/filters";
 
-function Navbar({ userQuery, on_Click, on_Change }) {
+function Navbar({ userQuery, on_Click, on_Change, on_KeyDown }) {
   return (
     <div className="w-full bg-[--w-black] h-[15vh]">
       <img
@@ -14,6 +14,7 @@ function Navbar({ userQuery, on_Click, on_Change }) {
           // user_query={userQuery}
           on_Click={on_Click}
           on_Change={on_Change}
+          on_KeyDown={on_KeyDown}
         />
         <Filter />
       </div>
