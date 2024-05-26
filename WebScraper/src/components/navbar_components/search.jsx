@@ -16,7 +16,7 @@ function Search({ on_Click, on_Change, on_KeyDown }) {
         onClick={() => {
           on_Click();
         }}
-        className="select-none absolute cursor-pointer right-0 rounded-full h-1/2 w-[10%] flex items-center justify-center bg-[--w-cyan] hover:w-1/6 duration-500"
+        className="select-none absolute cursor-pointer right-0 rounded-full h-1/2 w-[10%] flex items-center justify-center bg-[--w-cyan] hover:w-[12%] duration-500"
       >
         <img src="./src/graphics/search.svg" />
       </button>

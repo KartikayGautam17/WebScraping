@@ -1,10 +1,10 @@
 import puppeteer from "puppeteer";
 import * as cheerio from "cheerio";
 import fs from "fs";
-const page_url_default = "https://www.amazon.in/s?k=plushie";
+const page_url_default = "https://www.amazon.in/s?k=books";
 //const title_class = "span.a-size-medium.a-color-base.a-text-normal";
 const img_class = "img.s-image";
-const price_class = "span.a-price-whole";
+const price_class = "span.a-offscreen";
 const href_class = "span[data-component-type='s-product-image']";
 const widget_id = "cel_widget_id";
 const FetchAmazonResults = async (page_url = page_url_default) => {
@@ -21,8 +21,9 @@ const FetchAmazonResults = async (page_url = page_url_default) => {
   const widgets = $("div[" + widget_id + "]");
   widgets.each((i, widget) => {
     const title = $(widget).find("h2 a span").text();
+
     const img = $(widget).find(img_class).attr("src");
-    const price = $(widget).find(price_class).text();
+    const price = $(widget).find(price_class)?.first().text().replace("₹", "");
     const href =
       "https://amazon.in/" + $(widget).find(href_class).find("a").attr("href");
     if (price && img && href && title)
@@ -34,5 +35,5 @@ const FetchAmazonResults = async (page_url = page_url_default) => {
   await browser.close();
   return results_list;
 };
-
+FetchAmazonResults();
 export default FetchAmazonResults;
