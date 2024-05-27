@@ -1,4 +1,4 @@
-function Tile({ title, img, href, price, source }) {
+function Tile({ title, img, href, price }) {
   return (
     <a
       href={href}
@@ -12,7 +12,6 @@ function Tile({ title, img, href, price, source }) {
         <div className=" w-full h-[40%] overflow-hidden">
           <div className="mx-auto mb-5 border-2 w-fit p-3 font-semibold">
             ₹{price}
-            {source}
           </div>
           <div className="text-center w-4/5 mx-auto block mb-5">{title}</div>
         </div>

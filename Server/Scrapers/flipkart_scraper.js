@@ -22,11 +22,7 @@ const FetchFlipkartResults = async (page_url = page_url_default) => {
     const main_class = $(widget).find(href_class);
     const title = "Flipkart " + $(main_class).find(title_class).attr("alt");
     const img = $(main_class).find(img_class).attr("src");
-    const price =
-      $(widget)
-        .find(price_class)
-        .text()
-        .match(/₹([^₹]*)/)[1] + "F";
+    const price = $(widget).find(price_class).first().text().replace("₹", "");
     const href = "https://www.flipkart.com" + main_class[0].attribs.href;
 
     // if (price && img && href && title)

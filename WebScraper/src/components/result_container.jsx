@@ -5,11 +5,10 @@ import KickstartFlipkartScraper from "../scrapers/Flipkart_Kickstart";
 import KickstartAmazonScraper from "../scrapers/Amazon_Kickstart";
 import A from "./result_tiles/content_array";
 
-function ResultContainer({ userQuery, btnPress }) {
+function ResultContainer({ userQuery, btnPress, Widgets, setWidgets }) {
   if (userQuery === null || userQuery === "") {
     return <DefaultResults />;
   }
-  const [Widgets, setWidgets] = useState("..Scraping Amazon Results..");
 
   let WidgetObject = [];
   function FineTitle(title, n = 70) {
@@ -20,7 +19,7 @@ function ResultContainer({ userQuery, btnPress }) {
     return fine_title;
   }
   useEffect(() => {
-    setWidgets("..Scraping Amazon Results..");
+    setWidgets(["..Scraping Amazon Results.."]);
     KickstartAmazonScraper(userQuery).then((AmazonResults) => {
       for (let key = 0; key < 10; key += 1) {
         if (Object.hasOwnProperty.call(AmazonResults, key)) {
@@ -28,7 +27,6 @@ function ResultContainer({ userQuery, btnPress }) {
           let fine_title = FineTitle(val.title);
           WidgetObject.push(
             <Tile
-              source={val.source}
               title={fine_title}
               price={val.price}
               img={val.img}
@@ -40,7 +38,7 @@ function ResultContainer({ userQuery, btnPress }) {
       //Amazon Scraping Completed
       //Launching Flipkart
 
-      setWidgets("..Scraping Flipkart Results..");
+      setWidgets(["..Scraping Flipkart Results.."]);
       KickstartFlipkartScraper(userQuery).then((FlipkartResults) => {
         for (let key = 0; key < 10; key += 1) {
           if (Object.hasOwnProperty.call(FlipkartResults, key)) {

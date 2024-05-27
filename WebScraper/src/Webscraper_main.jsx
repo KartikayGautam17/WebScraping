@@ -6,7 +6,7 @@ function WebScraper() {
   const [query, setQuery] = useState(() => null);
   const [queryBtn, setQueryBtn] = useState(() => null);
   const [btnPress, setBtnPress] = useState(0);
-
+  const [Widgets, setWidgets] = useState([]);
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       UpdateQuery();
@@ -28,8 +28,15 @@ function WebScraper() {
         on_Click={UpdateQuery}
         on_Change={UpdateInputChange}
         on_KeyDown={handleKeyPress}
+        Widgets={Widgets}
+        set_Widgets={setWidgets}
       />
-      <ResultContainer userQuery={queryBtn} btnPress={btnPress} />
+      <ResultContainer
+        userQuery={queryBtn}
+        btnPress={btnPress}
+        Widgets={Widgets}
+        setWidgets={setWidgets}
+      />
     </div>
   );
 }
