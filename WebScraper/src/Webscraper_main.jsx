@@ -7,6 +7,7 @@ function WebScraper() {
   const [queryBtn, setQueryBtn] = useState(() => null);
   const [btnPress, setBtnPress] = useState(0);
   const [Widgets, setWidgets] = useState([]);
+  const [fil, setFil] = useState([0, "null"]);
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       UpdateQuery();
@@ -30,6 +31,8 @@ function WebScraper() {
         on_KeyDown={handleKeyPress}
         Widgets={Widgets}
         set_Widgets={setWidgets}
+        fil={fil}
+        setFil={setFil}
       />
       <ResultContainer
         userQuery={queryBtn}
