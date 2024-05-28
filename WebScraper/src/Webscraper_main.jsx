@@ -7,7 +7,10 @@ function WebScraper() {
   const [queryBtn, setQueryBtn] = useState(() => null);
   const [btnPress, setBtnPress] = useState(0);
   const [Widgets, setWidgets] = useState([]);
-  const [fil, setFil] = useState([0, "null"]);
+  const [fil, setFil] = useState(["", ""]);
+  useEffect(() => {
+    console.log(fil);
+  }, [fil]);
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       UpdateQuery();
@@ -39,6 +42,7 @@ function WebScraper() {
         btnPress={btnPress}
         Widgets={Widgets}
         setWidgets={setWidgets}
+        filter={fil}
       />
     </div>
   );

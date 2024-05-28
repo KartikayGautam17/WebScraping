@@ -5,7 +5,7 @@ import KickstartFlipkartScraper from "../scrapers/Flipkart_Kickstart";
 import KickstartAmazonScraper from "../scrapers/Amazon_Kickstart";
 import A from "./result_tiles/content_array";
 
-function ResultContainer({ userQuery, btnPress, Widgets, setWidgets }) {
+function ResultContainer({ userQuery, btnPress, Widgets, setWidgets, filter }) {
   if (userQuery === null || userQuery === "") {
     return <DefaultResults />;
   }
@@ -20,7 +20,7 @@ function ResultContainer({ userQuery, btnPress, Widgets, setWidgets }) {
   }
   useEffect(() => {
     setWidgets(["..Scraping Amazon Results.."]);
-    KickstartAmazonScraper(userQuery).then((AmazonResults) => {
+    KickstartAmazonScraper(userQuery, filter).then((AmazonResults) => {
       for (let key = 0; key < 10; key += 1) {
         if (Object.hasOwnProperty.call(AmazonResults, key)) {
           const val = AmazonResults[key];
@@ -39,7 +39,7 @@ function ResultContainer({ userQuery, btnPress, Widgets, setWidgets }) {
       //Launching Flipkart
 
       setWidgets(["..Scraping Flipkart Results.."]);
-      KickstartFlipkartScraper(userQuery).then((FlipkartResults) => {
+      KickstartFlipkartScraper(userQuery, filter).then((FlipkartResults) => {
         for (let key = 0; key < 10; key += 1) {
           if (Object.hasOwnProperty.call(FlipkartResults, key)) {
             const val = FlipkartResults[key];

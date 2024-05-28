@@ -27,22 +27,22 @@ function Filter({ type, Widgets, setWidgets, fil, setFil }) {
     const [show, setShow] = useState(0);
     return (
       <>
-        <div className="relative w-[12%] h-full flex items-center mr-5">
+        <div className="relative w-[12%] h-4/5 flex items-center mr-5">
           <button
             onClick={() => {
               setShow(show ^ 1);
             }}
-            className="relative pt-2 w-full h-full border-2 border-white p-2 flex flex-col gap-2 justify-start items-center hover:bg-green-500 hover:bg-opacity-50 duration-500"
+            className="relative pt-2 w-full h-full border-2 border-white p-2 flex flex-col justify-between items-center hover:bg-green-500 hover:bg-opacity-50 duration-500"
           >
-            <div className="text-m m-0">Price Range</div>
-            <div className="flex justify-between [color:rgba(255,255,255,0.6)] w-1/2">
-              <div>{fil[0]}</div>
-              <div className="mx-[5px]">-</div>
-              <div>{fil[1]}</div>
+            <div className="text-m m-0">Range</div>
+            <div className="text-center flex justify-center [color:rgba(255,255,255,0.6)] w-1/2">
+              <div>{fil[0] == "0" ? "" : fil[0]}</div>
+              <div className="mx-[1%]">-</div>
+              <div>{fil[1] == "0" ? "" : fil[1]}</div>
             </div>
           </button>
         </div>
-        <RangeDiv show={show} fil={fil} setFil={setFil} />
+        <RangeDiv show={show} fil={fil} setFil={setFil} setShow={setShow} />
       </>
     );
   } else return <></>;
