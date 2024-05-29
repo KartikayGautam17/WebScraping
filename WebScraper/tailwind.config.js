@@ -9,6 +9,15 @@ export default {
     "./src/components/resultStates/*.{html,js,jsx}",
   ],
   theme: {
+    colors: {
+      white: "#FEFFD2",
+      peach: "#FFEEA9",
+      topaz: "#FFBF78",
+      orange: "#FF7D29",
+      black: "#0b0c10",
+      gray: "#0b0c10AA", // 80% transparent is defined by CC
+      cyan: "#66fcf1",
+    },
     extend: {},
   },
   plugins: [],

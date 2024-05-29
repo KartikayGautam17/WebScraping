@@ -9,18 +9,18 @@ function Filter({ type, Widgets, setWidgets, fil, setFil }) {
         onClick={() => {
           AscendSort(Widgets, setWidgets);
         }}
-        className="w-full border-2 border-[--w-cyan] rounded-full text-center hover:bg-[rgba(102,252,241,0.8)] hover:text-white duration-500"
+        className="w-full border-2 text-gray border-[transparent] rounded-full text-center hover:bg-orange hover:text-black duration-500"
       >
-        Ascending
+        Ascending ↑
       </button>
     );
   else if (type === "Descending")
     return (
       <button
         onClick={() => DescendSort(Widgets, setWidgets)}
-        className="w-full border-2 border-[--w-cyan] rounded-full text-center hover:bg-[rgba(102,252,241,0.8)] hover:text-white duration-500"
+        className="w-full border-2 border-[transparent] text-gray rounded-full text-center hover:bg-orange hover:text-black duration-500"
       >
-        Descending
+        Descending ↓
       </button>
     );
   else if (type === "Price") {
@@ -32,13 +32,17 @@ function Filter({ type, Widgets, setWidgets, fil, setFil }) {
             onClick={() => {
               setShow(show ^ 1);
             }}
-            className="relative pt-2 w-full h-full border-2 border-white p-2 flex flex-col justify-between items-center hover:bg-green-500 hover:bg-opacity-50 duration-500"
+            className="relative pt-2 w-full h-full border-2 bg-orange border-[transparent] duration-1000 text-gray p-2 flex flex-col justify-between items-center  "
           >
-            <div className="text-m m-0">Range</div>
-            <div className="text-center flex justify-center [color:rgba(255,255,255,0.6)] w-1/2">
-              <div>{fil[0] == "0" ? "" : fil[0]}</div>
-              <div className="mx-[1%]">-</div>
-              <div>{fil[1] == "0" ? "" : fil[1]}</div>
+            <div className="text-m m-0 text-black">Range</div>
+            <div className="text-center flex justify-center text-black">
+              <div className="text-gray">
+                {fil[0] == "0" ? "" : "₹" + fil[0]}
+              </div>
+              <div className="text-gray mx-[2%]">-</div>
+              <div className="text-gray">
+                {fil[1] == "0" ? "" : "₹" + fil[1]}
+              </div>
             </div>
           </button>
         </div>
