@@ -27,7 +27,7 @@ function WebScraper() {
   };
   // useEffect(() => {}, [query]);
   return (
-    <div className=" min-h-[100vh] bg-[--w-clayblack] relative">
+    <div className=" min-h-[100vh] bg-white relative">
       <Navbar
         on_Click={UpdateQuery}
         on_Change={UpdateInputChange}

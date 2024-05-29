@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import KickstartFlipkartScraper from "../scrapers/Flipkart_Kickstart";
 import KickstartAmazonScraper from "../scrapers/Amazon_Kickstart";
 import A from "./result_tiles/content_array";
+import NullResults from "./resultStates/nullRes";
 
 function ResultContainer({ userQuery, btnPress, Widgets, setWidgets, filter }) {
   if (userQuery === null || userQuery === "") {
@@ -58,10 +59,10 @@ function ResultContainer({ userQuery, btnPress, Widgets, setWidgets, filter }) {
       });
     });
   }, [btnPress]);
-
+  if (Widgets.length === 0) return NullResults;
   return (
-    <div className="bg-[--w--clayblack] flex items-center justify-center relative">
-      <div className="bg-[--w-shadecyan] p-10 gap-5 mt-5 mb-10 grid grid-rows-3 grid-cols-5 w-[90%] border-2 min-h-[85vh] [row-gap:20px]">
+    <div className="bg-white flex mt-7 items-center justify-center relative text-gray">
+      <div className="p-10 gap-7 mt-5 mb-10 grid grid-rows-5 grid-cols-4 w-[90%] min-h-[85vh] [row-gap:40px]">
         {Widgets}
       </div>
     </div>

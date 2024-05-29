@@ -9,7 +9,7 @@ function RangeDiv({ show, fil, setFil, setShow }) {
   return (
     <div
       className={
-        "inline-flex w-[230px] h-[75px] top-2 m-4 mt-0 ml-0 absolute border-2 bg-[--w-clayblack] duration-500 items-center justify-around" +
+        "inline-flex w-[230px] h-[75px] top-2 m-4 mt-0 ml-0 absolute border-2 bg-orange duration-500 items-center justify-around" +
         toggle
       }
     >
@@ -17,7 +17,7 @@ function RangeDiv({ show, fil, setFil, setShow }) {
         <input
           type="text"
           placeholder="₹Min"
-          className="w-full h-full pl-1"
+          className="w-full h-full pl-1 bg-peach"
           onChange={(val) => {
             setMin(val.target.value);
           }}
@@ -25,7 +25,7 @@ function RangeDiv({ show, fil, setFil, setShow }) {
         <input
           type="text"
           placeholder="₹Max"
-          className="w-full h-full pl-1"
+          className="w-full h-full pl-1 bg-peach"
           onChange={(val) => {
             setMax(val.target.value);
           }}
@@ -33,17 +33,13 @@ function RangeDiv({ show, fil, setFil, setShow }) {
       </div>
 
       <button
-        className="flex items-center justify-center border-2 h-1/2 w-10 mr-4 rounded-lg hover:bg-cyan-400"
+        className="flex items-center justify-center border-2 h-1/2 w-10 mr-4 rounded-lg hover:bg-cyan hover:bg-opacity-90"
         onClick={() => {
           setFil([min, max]);
           setShow(0);
         }}
       >
-        <img
-          src="./check-lg.svg"
-          alt="232"
-          className="w-10 h-5 object-contain "
-        ></img>
+        <img src="./check-lg.svg" alt="232" className="w-10 h-5"></img>
       </button>
     </div>
   );

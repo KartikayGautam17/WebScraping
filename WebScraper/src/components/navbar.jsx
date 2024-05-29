@@ -11,7 +11,7 @@ function Navbar({
   setFil,
 }) {
   return (
-    <div className="w-full bg-[--w-black] h-[100px]">
+    <div className="w-full bg-topaz h-[100px] sticky top-0 z-10">
       <div className="overflow-hidden inline-flex w-[90%] h-full ml-[2%] p-2.5 justify-start items-center gap-10">
         <Filter type={"Price"} fil={fil} setFil={setFil} />
         <Search
